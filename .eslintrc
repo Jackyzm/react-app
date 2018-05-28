@@ -1,0 +1,54 @@
+﻿{
+    "parser": "babel-eslint",
+    "extends":
+    [      
+    ],
+    "plugins":
+    [
+        "react"
+    ],
+    "parserOptions":
+    {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures":
+        {
+            "impliedStrict": true,
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "globals":
+    {
+        "window": true,
+        "module": true,
+        "console": true,
+        "document": true,
+        "require": true,
+        "__DEV__": true
+    },
+    "env":
+    {
+        "es6": true
+    },
+    "rules":
+    {
+        "linebreak-style": "off",
+        "max-len": "off",
+        "no-console":
+        [
+            "warn",
+            {
+                "allow":
+                [
+                    "warn",
+                    "error",
+                    "debug",
+                    "info"
+                ]
+            }
+        ],
+        "no-debugger": "warn",
+        "object-curly-spacing": "off"
+    }
+}
