@@ -34,6 +34,7 @@ const config = {
         alias: {
             // 全局色彩使用统一变量
             'img': path.resolve('public/img/'),
+            'components': path.resolve('src/components/'),
         }
     },
     module:{
@@ -103,6 +104,7 @@ const config = {
                                         loader: 'less-loader',
                                         options: {
                                             sourceMap: true,
+                                            javascriptEnabled: true
                                             // modifyVars: customizeTheme
                                         },
                                     },
@@ -125,8 +127,6 @@ const config = {
         ]
     },
     plugins: [
-        new webpack.ProvidePlugin({}),
-
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify("production")
         }),
@@ -150,7 +150,7 @@ const config = {
                 minifyURLs: true,
             },
         }),
-        
+
         // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
         // Minify all javascript, switch loaders to minimizing mode
         new webpack.optimize.UglifyJsPlugin({

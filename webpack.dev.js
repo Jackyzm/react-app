@@ -44,7 +44,7 @@ const config = {
             context: [
                 '/api',
             ],
-            target: 'http://localhost:8080',
+            target: '',
             secure: false
         }, {
             context: [
@@ -56,8 +56,8 @@ const config = {
     },
     resolve: {
         alias: {
-            // 全局色彩使用统一变量
-            'img': path.resolve('public/img/'),
+            'img': path.resolve('public/img'),
+            'components': path.resolve('src/components'),
         }
     },
     module:{
@@ -118,6 +118,7 @@ const config = {
                                 loader: 'less-loader',
                                 options: {
                                     sourceMap: true,
+                                    javascriptEnabled: true
                                     // modifyVars: customizeTheme
                                 },
                             },
@@ -146,8 +147,6 @@ const config = {
         // Hot Module Replacement(HMR), in most cases no options are necessary.
         // @see: https://webpack.js.org/plugins/hot-module-replacement-plugin/
         new webpack.HotModuleReplacementPlugin(),
-
-        new webpack.ProvidePlugin({}),
 
         new HtmlWebpackPlugin({
             template: './public/index.html',
