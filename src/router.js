@@ -4,11 +4,9 @@ import { LocaleProvider, Spin } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import dynamic from 'dva/dynamic';
 import { getRouterData } from './common/router';
-// import Authorized from './utils/Authorized';
 import './index.less';
 
 const { ConnectedRouter } = routerRedux;
-// const { AuthorizedRoute } = Authorized;
 dynamic.setDefaultLoadingComponent(() => {
     return <Spin size="large" className={'globalSpin'} />;
 });
@@ -16,21 +14,13 @@ dynamic.setDefaultLoadingComponent(() => {
 function RouterConfig({ history, app }) {
     const routerData = getRouterData(app);
     const Dashboard = routerData['/'].component;
-    // const UserLayout = routerData['/user'].component;
+    const UserLayout = routerData['/user'].component;
     return (
         <LocaleProvider locale={zhCN}>
             <ConnectedRouter history={history}>
                 <Switch>
-                    <Route
-                        path="/"
-                        component={Dashboard}
-                    />
-                    {/* <AuthorizedRoute
-                        path="/"
-                        render={props => <Dashboard {...props} />}
-                        authority={['admin', 'user']}
-                        redirectPath="/user/login"
-                    /> */}
+                    <Route exact path="/" component={Dashboard} />
+                    <Route path="/user" component={UserLayout} />
                 </Switch>
             </ConnectedRouter>
         </LocaleProvider>

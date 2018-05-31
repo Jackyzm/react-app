@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import { Icon } from 'antd';
 import './index.less';
 
@@ -7,17 +6,16 @@ export default function Result({
     className, type, title, description, extra, actions, ...restProps
 }) {
     const iconMap = {
-        error: <Icon className={styles.error} type="close-circle" />,
-        success: <Icon className={styles.success} type="check-circle" />,
+        error: <Icon className={'error'} type="close-circle" />,
+        success: <Icon className={'success'} type="check-circle" />,
     };
-    const clsString = classNames(styles.result, className);
     return (
-        <div className={clsString} {...restProps}>
-            <div className={styles.icon}>{iconMap[type]}</div>
-            <div className={styles.title}>{title}</div>
-            {description && <div className={styles.description}>{description}</div>}
-            {extra && <div className={styles.extra}>{extra}</div>}
-            {actions && <div className={styles.actions}>{actions}</div>}
+        <div className={'result'} {...restProps}>
+            <div className={'icon'}>{iconMap[type]}</div>
+            <div className={'title'}>{title}</div>
+            {description && <div className={'description'}>{description}</div>}
+            {extra && <div className={'extra'}>{extra}</div>}
+            {actions && <div className={'actions'}>{actions}</div>}
         </div>
     );
 }

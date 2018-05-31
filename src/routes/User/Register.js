@@ -184,7 +184,7 @@ export default class Register extends Component {
                                     {this.renderPasswordProgress()}
                                     <div style={{ marginTop: 10 }}>
                                         请至少输入 6 个字符。请不要使用容易被猜到的密码。
-                  </div>
+                                    </div>
                                 </div>
                             }
                             overlayStyle={{ width: 240 }}

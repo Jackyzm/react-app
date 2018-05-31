@@ -13,18 +13,25 @@ const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
 }))
 export default class LoginPage extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             type: 'account',
             autoLogin: true,
-        }
+        };
     }
-
-    onTabChange = (type) => {
+    /**
+     * @param {any} type
+     * @memberof LoginPage
+     */
+    onTabChange(type) {
         this.setState({ type });
     }
-
-    handleSubmit = (err, values) => {
+    /**
+     * @param {any} err
+     * @param {any} values
+     * @memberof LoginPage
+     */
+    handleSubmit(err, values) {
         const { type } = this.state;
         if (!err) {
             this.props.dispatch({

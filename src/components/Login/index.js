@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tabs } from 'antd';
-import classNames from 'classnames';
 import LoginItem from './LoginItem';
 import LoginTab from './LoginTab';
 import LoginSubmit from './LoginSubmit';
@@ -10,13 +9,11 @@ import './index.less';
 @Form.create()
 class Login extends Component {
     static defaultProps = {
-        className: '',
         defaultActiveKey: '',
         onTabChange: () => { },
         onSubmit: () => { },
     };
     static propTypes = {
-        className: PropTypes.string,
         defaultActiveKey: PropTypes.string,
         onTabChange: PropTypes.func,
         onSubmit: PropTypes.func,
@@ -76,7 +73,7 @@ class Login extends Component {
         );
     }
     render() {
-        const { className, children } = this.props;
+        const { children } = this.props;
         const { type, tabs } = this.state;
         const TabChildren = [];
         const otherChildren = [];

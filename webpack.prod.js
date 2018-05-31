@@ -40,14 +40,6 @@ const config = {
     module:{
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                enforce: 'pre',
-                exclude: [/node_modules/, /lib/],
-                use: [{
-                    loader: 'eslint-loader',
-                }],
-            },
-            {
                 oneOf: [
                     {
                         test: /\.(js|jsx)$/,
