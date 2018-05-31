@@ -1,13 +1,12 @@
 # react-app
-react+webpack+react-router@v4+redux+antd（开发中....）
-使用webpack打包react项目 分别配置dev和prod
+从头开始配置一个react项目 学习项目中的各种配置 欢迎交流学习
 
 ## 启动项目
 ```sh
-$ npm install / yarn install
+$ npm install
 ```
 ```sh
-$ npm run start / yarn start
+$ npm run start
 ```
 
 ## 打包项目
