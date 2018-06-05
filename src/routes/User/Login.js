@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'dva';
-import { Link } from 'dva/router';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { Checkbox, Alert, Icon } from 'antd';
 import Login from 'components/Login';
 import './Login.less';

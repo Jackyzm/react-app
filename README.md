@@ -11,5 +11,5 @@ $ npm run start
 
 ## 打包项目
 ```sh
-$ npm run build / yarn build
+$ npm run build
 ```

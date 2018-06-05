@@ -15,7 +15,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
@@ -32,7 +31,6 @@
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
-    "mockjs": "^1.0.1-beta3",
     "postcss-flexbugs-fixes": "^3.3.1",
     "postcss-loader": "^2.1.5",
     "prop-types": "^15.6.1",
@@ -40,18 +38,19 @@
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
     "webpack": "3.10.0",
-    "webpack-dev-server": "2.9.7"
+    "webpack-dev-server": "2.9.7",
+    "webpack-merge": "^4.1.2"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-beta.49",
     "antd": "^3.5.4",
-    "dva": "^2.2.3",
-    "dva-loading": "^2.0.1",
     "history": "^4.7.2",
     "react": "^16.4.0",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.4.0",
-    "url-polyfill": "^1.0.13",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
     "whatwg-fetch": "^2.0.4"
   },
   "scripts": {

@@ -1,30 +1,34 @@
-import '@babel/polyfill';
-import 'url-polyfill';
-import dva from 'dva';
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router } from 'react-router-dom';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createHashHistory';
-// user BrowserHistory
-// import createHistory from 'history/createBrowserHistory';
-import createLoading from 'dva-loading';
 import 'moment/locale/zh-cn';
-// import './rollbar';
 
+import App from './router';
 import './index.less';
-// 1. Initialize
-const app = dva({
-    history: createHistory(),
-});
 
-// 2. Plugins
-app.use(createLoading());
-
-// 3. Register global model
-app.model(require('./models/user').default);
-
-// 4. Router
-app.router(require('./router').default);
-
-// 5. Start
-app.start('#root');
-
-export default app._store;  // eslint-disable-line
+const history = createHistory();
+const sagaMiddleware = createSagaMiddleware();
+const sagas = {};
+const reducers = {};
+const store = createStore(
+    combineReducers(
+        reducers
+    ),
+    compose(
+        applyMiddleware(sagaMiddleware),
+        process.env.NODE_ENV === 'development' && window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
+);
+sagaMiddleware.run(sagas);
+ReactDOM.render(
+    <Provider store={store}>
+        <Router history={history}>
+            <App />
+        </Router>
+    </Provider>,
+    document.getElementById('root')
+);

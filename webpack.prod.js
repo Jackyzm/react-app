@@ -3,9 +3,10 @@ var path = require('path');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const WebpackMerge = require('webpack-merge');
+const commonConfig = require('./webpack.common');
 
 const entryPath = path.join(__dirname, './src');
 
@@ -19,39 +20,10 @@ const config = {
             path.join(entryPath, 'index.js'),
         ]
     },
-    output: {
-        // Next line is not used in dev but WebpackDevServer crashes without it:
-        path: outputPath,
-        // This does not produce a real file. It's just the virtual path that is
-        // served by WebpackDevServer in development. This is the JS bundle
-        // containing code from all our entry points, and the Webpack runtime.
-        filename: '[name].[hash].bundle.js',
-
-        // There are also additional JS chunk files if you use code splitting.
-        chunkFilename: '[name].[hash].chunk.js',
-    },
-    resolve: {
-        alias: {
-            // 全局色彩使用统一变量
-            'img': path.resolve('public/img/'),
-            'components': path.resolve('src/components/'),
-        }
-    },
     module:{
         rules: [
             {
                 oneOf: [
-                    {
-                        test: /\.(js|jsx)$/,
-                        exclude: [/node_modules/, /lib/],
-                        use: {
-                            loader: 'babel-loader'
-                        }
-                    },
-                    {
-                        test: /\.html$/,
-                        loader: 'html-loader'
-                    },
                     {
                         test: /\.(css|less)$/,
                         loader: ExtractTextPlugin.extract(
@@ -81,13 +53,13 @@ const config = {
                                             plugins: () => [
                                                 require('postcss-flexbugs-fixes'),
                                                 autoprefixer({
-                                                browsers: [
-                                                    '>1%',
-                                                    'last 4 versions',
-                                                    'Firefox ESR',
-                                                    'not ie < 9', // React doesn't support IE8 anyway
-                                                ],
-                                                flexbox: 'no-2009',
+                                                    browsers: [
+                                                        '>1%',
+                                                        'last 4 versions',
+                                                        'Firefox ESR',
+                                                        'not ie < 9', // React doesn't support IE8 anyway
+                                                    ],
+                                                    flexbox: 'no-2009',
                                                 }),
                                             ],
                                         },
@@ -104,16 +76,6 @@ const config = {
                             }
                         ),
                     },
-                    {
-                        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                        loader: 'file-loader',
-                        options: {
-                            name: 'fonts/[name].[ext]'
-                        }
-                    },
-                    {
-                        test: /\.(png|jpg|gif)$/, use: { loader: 'file-loader', options: { limit: 8192, name: 'img/[name].[ext]' } }
-                    }
                 ]
             }
         ]
@@ -168,8 +130,6 @@ const config = {
             }
         }),
 
-        // new webpack.optimize.ModuleConcatenationPlugin(),
-
         new webpack.NoEmitOnErrorsPlugin(),
 
         new ExtractTextPlugin("[name].[hash].css"),
@@ -181,15 +141,15 @@ const config = {
                     to: path.join(outputPath, 'fonts/'),
                     // context: 'public'
                 },
+                {
+                    from: path.join(__dirname, 'public/img'),
+                    to: path.join(outputPath, 'img/'),
+                }
             ]
         ),
-        /**
-         * https://github.com/Urthen/case-sensitive-paths-webpack-plugin
-         */
-        new CaseSensitivePathsPlugin(),
 
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ]
 }
 
-module.exports = config;
+module.exports = WebpackMerge(commonConfig, config);
