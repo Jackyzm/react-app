@@ -10,6 +10,8 @@ const entryPath = path.join(__dirname, './src');
 
 const outputPath = path.join(__dirname, './dist');
 
+const customizeTheme = require('./src/theme');
+
 const port = 8000;
 
 const config = {
@@ -84,8 +86,8 @@ const config = {
                                 loader: 'less-loader',
                                 options: {
                                     sourceMap: true,
-                                    javascriptEnabled: true
-                                    // modifyVars: customizeTheme
+                                    javascriptEnabled: true,
+                                    modifyVars: customizeTheme
                                 },
                             },
                         ],
