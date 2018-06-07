@@ -1,6 +1,5 @@
-import fetch from 'dva/fetch';
 import { notification } from 'antd';
-import { routerRedux } from 'dva/router';
+import { push } from 'react-router-redux';
 import store from '../index';
 
 const codeMessage = {
@@ -82,15 +81,15 @@ export default function request(url, options) {
                 return;
             }
             if (status === 403) {
-                dispatch(routerRedux.push('/exception/403'));
+                dispatch(push('/exception/403'));
                 return;
             }
             if (status <= 504 && status >= 500) {
-                dispatch(routerRedux.push('/exception/500'));
+                dispatch(push('/exception/500'));
                 return;
             }
             if (status >= 404 && status < 422) {
-                dispatch(routerRedux.push('/exception/404'));
+                dispatch(push('/exception/404'));
             }
         });
 }
