@@ -11,6 +11,12 @@
         "jasmine": true
     },
     "rules": {
+        "no-lonely-if": [0],
+        "no-prototype-builtins": [0],
+        "no-plusplus": [0],
+        "no-multi-assign": [0],
+        "no-param-reassign": [0],
+        "func-names": ["error", "never"],
         "linebreak-style": ["error", "windows"],
         "max-len": ["error", { "code": 200 }],
         "indent":["error", 4],
@@ -36,6 +42,17 @@
                 "condition": "parens-new-line",
                 "logical": "parens-new-line",
                 "prop": "ignore"
+            }
+        ],
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "warn",
+                    "error",
+                    "debug",
+                    "info"
+                ]
             }
         ],
         "no-else-return": [0],

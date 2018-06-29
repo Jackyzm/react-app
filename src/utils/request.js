@@ -1,6 +1,4 @@
 import { notification } from 'antd';
-import { push } from 'react-router-redux';
-import store from '../index';
 
 const codeMessage = {
     200: '服务器成功返回请求的数据。',
@@ -72,24 +70,25 @@ export default function request(url, options) {
             return response.json();
         })
         .catch((e) => {
-            const { dispatch } = store;
-            const status = e.name;
-            if (status === 401) {
-                dispatch({
-                    type: 'login/logout',
-                });
-                return;
-            }
-            if (status === 403) {
-                dispatch(push('/exception/403'));
-                return;
-            }
-            if (status <= 504 && status >= 500) {
-                dispatch(push('/exception/500'));
-                return;
-            }
-            if (status >= 404 && status < 422) {
-                dispatch(push('/exception/404'));
-            }
+            console.debug(e);
+            // const { dispatch } = store;
+            // const status = e.name;
+            // if (status === 401) {
+            //     dispatch({
+            //         type: 'login/logout',
+            //     });
+            //     return;
+            // }
+            // if (status === 403) {
+            //     dispatch(push('/exception/403'));
+            //     return;
+            // }
+            // if (status <= 504 && status >= 500) {
+            //     dispatch(push('/exception/500'));
+            //     return;
+            // }
+            // if (status >= 404 && status < 422) {
+            //     dispatch(push('/exception/404'));
+            // }
         });
 }

@@ -1,0 +1,114 @@
+.MyCalendar{
+    width: 100%;
+    padding: 10px;
+    .MyCalendar-DatePicker{
+        text-align: center;
+        padding: 10px 0;
+        input{
+            border: none;
+            box-shadow: none;
+            font-size: 18px;
+            color: #2E8DE3;
+            width: 150px;
+            border-bottom: 1px solid #2E8DE3;
+        }
+        .ant-calendar-picker-icon{
+            display: none;
+        }
+    }
+    .MyCalendar-table{
+        border: 1px solid #e8e8e8;
+        padding: 4px;
+        position: relative;
+        table{
+            width: 100%;
+            thead{
+                th{
+                    text-align: center;
+                    line-height: 30px;
+                }
+            }
+            tbody{
+                tr{
+                    td{
+                        width: 14.28%;
+                        padding: 2px;
+                        .myCalendar-date{
+                            cursor: pointer;
+                            &:hover{
+                                background-color: #f0faff;
+                            }
+                            margin: 0 4px 6px;
+                            border: 1px solid #e8e8e8;
+                            padding: 4px 8px;
+                            position: relative;
+                            .myCalendar-value{
+                                text-align: right;
+                                position: absolute;
+                                right: 8px;
+                                bottom: 4px;
+                                font-weight: bolder;
+                                color: #637484;
+                            }
+                            .myCalendar-content{
+                                width: 100%;
+                                height: 90px;
+                                p{
+                                    margin: 0;
+                                    padding: 0;
+                                    width: 100%;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                }
+                            }
+                        }
+                        &.myCalendar-not-this-month{
+                            .myCalendar-date{
+                                background-color: #F8F8F8;
+                                .myCalendar-content{
+                                    color: #C5CACE;
+                                }
+                                .myCalendar-value{
+                                    color: #C5CACE;
+                                }
+                            }
+                        }
+                        &.myCalendar-select-day{
+                            .myCalendar-date{
+                                background-color: #2E8DE3;
+                                .myCalendar-value{
+                                    color: #fff;
+                                }
+                                .myCalendar-content{
+                                    color: #fff;
+                                }
+                            }
+                        }
+                        &.myCalendar-today{
+                            .myCalendar-date{
+                                border-color: #2E8DE3;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .MyCalendar-hover-box{
+            position: fixed;
+            background-color: #F3F7FA;
+            padding: 10px;
+            border-radius: 5px;
+            color: #000036;
+            width: 150px;
+            z-index: 9;
+            p{
+                margin: 0;
+                padding: 0;
+                line-height: 1.4;
+                span{
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

@@ -1,34 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
-import createHistory from 'history/createHashHistory';
+// import createHistory from 'history/createHashHistory';
 import 'moment/locale/zh-cn';
 
 import App from './router';
 import models from './models';
-import reducersBuild from './utils/reducerBuild';
-import sagasBuild from './utils/sagaBuild';
+import buildReducer from './utils/reducersBuild';
+import buildSagas from './utils/sagasBuild';
 import './index.less';
 
-const history = createHistory();
+// const history = createHistory();
 const sagaMiddleware = createSagaMiddleware();
 
-const middleware = routerMiddleware(history);
-const reducers = reducersBuild(models);
-const sagas = sagasBuild(models);
+const reducers = buildReducer(models);
+const sagas = buildSagas(models);
 
-export const store = createStore(
+
+const store = createStore(
     combineReducers({
         ...reducers,
-        router: routerReducer,
     }),
     compose(
         applyMiddleware(
-            middleware,
             sagaMiddleware,
         ),
         process.env.NODE_ENV === 'development' && window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -38,9 +35,9 @@ sagaMiddleware.run(sagas);
 
 ReactDOM.render(
     <Provider store={store}>
-        <ConnectedRouter history={history}>
+        <Router>
             <App />
-        </ConnectedRouter>
+        </Router>
     </Provider>,
     document.getElementById('root')
 );
