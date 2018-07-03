@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'antd';
 import './index.less';
 
 @connect(
@@ -16,7 +17,9 @@ class Dashboard extends Component {
     render() {
         console.debug(this.props);
         return (
-            <div>Hello word!</div>
+            <div>Hello word!
+                <Button type={'primary'}>dsadasda</Button>
+            </div>
         );
     }
 }
